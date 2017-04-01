@@ -6,11 +6,11 @@ This is a really simple Python CGI script that does some things to fix the iCale
 Modifications that are done to the output
 -----------------------------------------
 
-- Fix the daylight saving problem. Due to a bug in the software, when the schedule is generated before daylight saving starts, the lessons after the beginning of DST are marked one hour too late and vice versa.
+- Fixes the daylight saving problem. Due to a bug in the software, when the schedule is generated before daylight saving starts, the lessons after the beginning of DST are marked one hour too late and vice versa.
 
-- Translate the character set to UTF-8 which is the preferred encoding in iCalendar.
+- Translates the character set to UTF-8 which is the preferred encoding in iCalendar.
 
-- Remove the calendar title that is repeated in square bracket on every event's summary. That is probably redundant as most calendaring software can mark different calendars anyway for example by color-coding.
+- Removes the calendar title that is repeated in square bracket on every event's summary. That is probably redundant as most calendaring software can mark different calendars anyway for example by color-coding.
 
 Hosted version
 --------------
