@@ -26,5 +26,8 @@ for e in cal.walk('vevent'):
 
     e['SUMMARY'] = re.sub('^\[(.*?)\]\s', "", e['SUMMARY'])
 
+if form.getvalue("tidy") == "yes":
+    cal.subcomponents[:] = [comp for comp in cal.subcomponents if comp['LOCATION'] != ""]
+
 os.write(1,b"Content-Type: text/plain\nCache-Control: max-age=21600\n\n") # CGI-otsakkeet
 os.write(1,cal.to_ical())
