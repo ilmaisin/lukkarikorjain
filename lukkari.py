@@ -16,6 +16,10 @@ http = urllib3.PoolManager()
 r = http.request('GET', 'http://lukkari.turkuamk.fi/' + form.getvalue("campus") + '/vcal/' + form.getvalue("group") + ".ics")
 unicode_text = r.data.decode('latin1')
 cal = Calendar.from_ical(unicode_text)
+
+if form.getvalue("tidy") == "yes":
+    cal.subcomponents[:] = [comp for comp in cal.subcomponents if comp['LOCATION'] != ""]
+
 for e in cal.walk('vevent'):
     if is_dst(e['DTSTAMP'].dt) and not is_dst(e['DTSTART'].dt):
         e['DTSTART'].dt = e['DTSTART'].dt + timedelta(hours=1)
@@ -25,9 +29,6 @@ for e in cal.walk('vevent'):
         e['DTEND'].dt = e['DTEND'].dt - timedelta(hours=1)
 
     e['SUMMARY'] = re.sub('^\[(.*?)\]\s', "", e['SUMMARY'])
-
-if form.getvalue("tidy") == "yes":
-    cal.subcomponents[:] = [comp for comp in cal.subcomponents if comp['LOCATION'] != ""]
 
 os.write(1,b"Content-Type: text/plain\nCache-Control: max-age=21600\n\n") # CGI-otsakkeet
 os.write(1,cal.to_ical())
