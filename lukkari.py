@@ -10,17 +10,25 @@ os.write(1,b"Content-Type: text/plain\nCache-Control: max-age=21600\n\n") # CGI-
 from icalendar import Calendar, Event
 import urllib3, re, pytz
 from datetime import datetime, timedelta
+import urllib.parse as urlparse
 
 def is_dst(querydate):
     return querydate.astimezone(pytz.timezone('Europe/Helsinki')).dst() != timedelta(0)
 
+campus = form.getvalue("campus")
+caldir = '/cal/' if campus in ['salo', 'ict'] else '/vcal/'
+
 http = urllib3.PoolManager()
-r = http.request('GET', 'http://lukkari.turkuamk.fi/' + form.getvalue("campus") + '/vcal/' + form.getvalue("group") + ".ics")
+r = http.request('GET', 'http://lukkari.turkuamk.fi/' + campus + caldir + form.getvalue("group") + ".ics")
+if r.status == 404:
+    print('ERROR: Invalid campus or group')
+    quit()
+
 unicode_text = r.data.decode('latin1')
 cal = Calendar.from_ical(unicode_text)
 
 if form.getvalue("insummary"):
-    cal.subcomponents[:] = [comp for comp in cal.subcomponents if form.getvalue("insummary") in comp['SUMMARY']]
+    cal.subcomponents[:] = [comp for comp in cal.subcomponents if urlparse.unquote(form.getvalue("insummary")) in comp['SUMMARY']]
 
 if form.getvalue("tidy") == "yes":
     cal.subcomponents[:] = [comp for comp in cal.subcomponents if comp['LOCATION'] != ""]
