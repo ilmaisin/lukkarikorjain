@@ -27,9 +27,6 @@ if r.status == 404:
 unicode_text = r.data.decode('latin1')
 cal = Calendar.from_ical(unicode_text)
 
-if form.getvalue("insummary"):
-    cal.subcomponents[:] = [comp for comp in cal.subcomponents if urlparse.unquote(form.getvalue("insummary")) in comp['SUMMARY']]
-
 if form.getvalue("tidy") == "yes":
     cal.subcomponents[:] = [comp for comp in cal.subcomponents if comp['LOCATION'] != ""]
 
@@ -42,5 +39,8 @@ for e in cal.walk('vevent'):
         e['DTEND'].dt = e['DTEND'].dt - timedelta(hours=1)
 
     e['SUMMARY'] = re.sub('^\[(.*?)\]\s', "", e['SUMMARY'])
+
+if form.getvalue("insummary"):
+    cal.subcomponents[:] = [comp for comp in cal.subcomponents if urlparse.unquote(form.getvalue("insummary")) in comp['SUMMARY']]
 
 os.write(1,cal.to_ical())
