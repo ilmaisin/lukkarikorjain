@@ -1,6 +1,8 @@
 Lukkarikorjain
 ==============
 
+Notice: This repository is now considered obsolete as TUAS has discontinued the use of Mimosa scheduling software. It is kept available as an archive for possible use at other institutions still using Mimosa. 
+
 This is a really simple Python CGI script that does some things to fix the iCalendar output of the Mimosa scheduling software. This is configured for use in Turku University of Applied Sciences where I am studying, but probably can be adapted to be used elsewhere.
 
 Modifications that are done to the output
@@ -14,4 +16,4 @@ Modifications that are done to the output
 
 Hosted version
 --------------
-The script is hosted at http://lukkari.iirolaiho.net/. You need to pass your campus and personnel/group identifier in the query string. For example, if you want the schedule of NPROMS14yt, you should enter `http://lukkari.iirolaiho.net/lukkari.py?campus=lemminkaisenkatu&group=nproms14yt` to your calendaring software's URL field.
+The script is (not anymore) hosted at http://lukkari.iirolaiho.net/. You need to pass your campus and personnel/group identifier in the query string. For example, if you want the schedule of NPROMS14yt, you should enter `http://lukkari.iirolaiho.net/lukkari.py?campus=lemminkaisenkatu&group=nproms14yt` to your calendaring software's URL field.
