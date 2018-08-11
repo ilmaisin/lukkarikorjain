@@ -1,7 +1,7 @@
 Lukkarikorjain
 ==============
 
-Notice: This repository is now considered obsolete as TUAS has discontinued the use of Mimosa scheduling software. It is kept available as an archive for possible use at other institutions still using Mimosa. 
+**Notice:** This repository is now considered obsolete as TUAS has discontinued the use of Mimosa scheduling software. It is kept available as an archive for possible use at other institutions still using Mimosa. 
 
 This is a really simple Python CGI script that does some things to fix the iCalendar output of the Mimosa scheduling software. This is configured for use in Turku University of Applied Sciences where I am studying, but probably can be adapted to be used elsewhere.
 
