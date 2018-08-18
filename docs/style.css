@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Vollkorn');
+body {
+font-family: 'Vollkorn', serif;
+font-size: 13pt;
+background-color: #FFFFFF;
+color: #4C4C4C;
+/*margin: 7%;*/
+float: none !important;
+text-rendering: optimizeLegibility;
+}
+
+a:link {color: #990033; text-decoration: none;}
+a:active {color: #3333CC; text-decoration: none;}
+a:visited {color: #902900; text-decoration: none;}
+a:hover {color: #2547C9; text-decoration: none;}
+.sml {font-size: 9pt; }
+h1 {border-bottom: 3px solid #4C4C4C; text-align: left;}
+h2 {font-size: 16pt; padding-top: 2mm; margin-bottom: 0; margin-top: 0; padding-bottom: 1mm; line-height: 1.1;}
+
+img.omakuva {display: block; margin-left: auto; margin-right: auto;
+             height: 4.5cm; width: 4.5cm;}
+
+header {border-bottom: 3px solid #4C4C4C; padding-bottom: 0}
+header h1 {padding-top: 0; border-bottom: none;}
+header h1:last-child {margin-bottom: 0;}
+
+p,ul {margin-top: 3mm; margin-bottom: 3mm;}
+
+@media (min-width: 19cm) and (min-device-width: 19cm ) {
+body {margin: 0 auto !important; max-width: 18cm; padding-top: 1.6cm;}
+header {display: flex; flex-direction: row-reverse; align-items: flex-end;}
+header h1 {display: inline-block; flex: 1; text-align: left;}
+}
